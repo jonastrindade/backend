@@ -1,0 +1,53 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+
+  TargetRailsVersion: 7.0
+  TargetRubyVersion: 3.1
+
+  Exclude:
+    - 'db/**/*'
+    - 'Rakefile'
+    - 'config/**/*'
+    - 'vendor/**/*'
+    - 'bin/bundle'
+
+  UseCache: false
+
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+Metrics/MethodLength:
+  Enabled: true
+  Max: 15
+
+Metrics/ClassLength:
+  Enabled: true
+  Max: 100
+
+Style/Documentation:
+  Enabled: false
+
+Style/HashSyntax:
+  EnforcedShorthandSyntax: never
+
+Style/PreferredHashMethods:
+  EnforcedStyle: verbose
+Style/HashEachMethods:
+  Exclude:
+    - 'app/services/cache_clear_keys_service.rb'
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'app/models/solicitation.rb'
+
+Rails/UnknownEnv:
+  Environments:
+    - test
+    - development
+    - staging
+    - production
