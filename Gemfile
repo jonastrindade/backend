@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 ruby '3.2.3'
 
+gem 'active_model_serializers'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
 gem 'jwt', '~> 2.5'
