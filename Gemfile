@@ -19,6 +19,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'byebug'
   gem 'rubocop-faker'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
