@@ -36,4 +36,9 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/syst
 set :keep_releases, 5
 
 # Uncomment the following to require manually verifying the host key before first deploy.
-# set :ssh_options, verify_host_key: :secure
+set :ssh_options, {
+  user: ENV.fetch("DEPLOY_USER", "deploy"),
+  keys: %W[#{ENV['DEPLOY_KEY']}],
+  forward_agent: true,
+  auth_methods: %w[publickey]
+}
