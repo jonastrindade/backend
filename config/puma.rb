@@ -1,26 +1,35 @@
-# Configuração de produção para Puma + Capistrano
+environment ENV.fetch("RAILS_ENV") { "development" }
 
-# Diretório atual da aplicação (Capistrano cria /current)
-directory "/var/www/backend/current"
-rackup "/var/www/backend/current/config.ru"
-environment "production"
+if ENV["RAILS_ENV"] == "production"
+  directory "/var/www/backend/current"
+end
 
-# PID e state persistentes
-pidfile "/var/www/backend/shared/tmp/pids/puma.pid"
-state_path "/var/www/backend/shared/tmp/pids/puma.state"
+rackup File.expand_path("config.ru", __dir__)
 
-# Logs persistentes
-stdout_redirect "/var/www/backend/shared/log/puma.stdout.log", "/var/www/backend/shared/log/puma.stderr.log", true
+if ENV["RAILS_ENV"] == "production"
+  pidfile "/var/www/backend/shared/tmp/pids/puma.pid"
+  state_path "/var/www/backend/shared/tmp/pids/puma.state"
+end
 
-# Bind Unix socket para Nginx
-bind "unix:///var/www/backend/shared/tmp/sockets/puma.sock"
+if ENV["RAILS_ENV"] == "production"
+  stdout_redirect "/var/www/backend/shared/log/puma.stdout.log",
+                  "/var/www/backend/shared/log/puma.stderr.log",
+                  true
+end
 
-# Número de workers e threads
-workers 2
-threads 1, 6
+if ENV["RAILS_ENV"] == "production"
+  bind "unix:///var/www/backend/shared/tmp/sockets/puma.sock"
+else
+  port 3000
+end
 
-# Roda em background
-daemonize true
+if ENV["RAILS_ENV"] == "production"
+  workers ENV.fetch("WEB_CONCURRENCY", 2)
+else
+  workers 0
+end
 
-# Permite reiniciar com `bin/rails restart`
+threads_count = ENV.fetch("RAILS_MAX_THREADS", 5)
+threads threads_count, threads_count
+
 plugin :tmp_restart
