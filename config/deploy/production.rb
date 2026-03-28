@@ -60,3 +60,10 @@ server "187.127.1.143", user: "deploy", roles: %w[app db web]
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+#
+set :ssh_options, {
+  user: ENV.fetch("DEPLOY_USER", "deploy"),
+  keys: %W[#{ENV['DEPLOY_KEY']}],
+  forward_agent: true,
+  auth_methods: %w[publickey]
+}
