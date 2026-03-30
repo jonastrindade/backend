@@ -32,7 +32,7 @@ jobs:
 
       - name: Test SSH connection
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 deploy@187.127.1.143 "echo SUCCESS"
+          ssh -i ~/.ssh/id_ed25519 deploy@187.127.1.143 "echo SUCCESS"
 
       - name: Deploy using Capistrano
         run: bundle exec cap production deploy
