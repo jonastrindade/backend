@@ -11,6 +11,7 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: production
 
     steps:
       - name: Checkout code
@@ -31,7 +32,6 @@ jobs:
 
       - name: Test SSH connection
         run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}"
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 deploy@187.127.1.143 "echo SUCCESS"
 
       - name: Deploy using Capistrano
