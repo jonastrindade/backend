@@ -13,7 +13,8 @@ set :ssh_options, {
   user: ENV.fetch("DEPLOY_USER", "deploy"),
   keys: %W[#{ENV['DEPLOY_KEY']}],
   forward_agent: true,
-  auth_methods: %w[publickey]
+  auth_methods: %w[publickey],
+  verify_host_key: :accept_new
 }
 namespace :puma do
   desc "Restart Puma"
