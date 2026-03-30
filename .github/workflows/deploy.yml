@@ -23,7 +23,7 @@ jobs:
           ruby-version: '4.0.2'
           bundler-cache: true
 
-     - name: Configure SSH
+      - name: Configure SSH
         run: |
           mkdir -p ~/.ssh
 
