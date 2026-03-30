@@ -26,8 +26,15 @@ jobs:
       - name: Configure SSH
         run: |
           mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
+
+          # Remove old host key (IMPORTANT)
+          ssh-keygen -R 187.127.1.143 || true
+
+          # Add fresh host key
           ssh-keyscan -H 187.127.1.143 >> ~/.ssh/known_hosts
 
       - name: Test SSH connection
