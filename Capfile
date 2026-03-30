@@ -1,5 +1,6 @@
 require 'dotenv/load'
 require "capistrano/setup"
+require "capistrano/bundler"
 require "capistrano/deploy"
 require "capistrano/scm/git"
 require "capistrano/rails/assets"

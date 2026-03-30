@@ -1,6 +1,8 @@
 lock "~> 3.20.0"
 
 set :application, "backend"
+set :bundle_flags, "--deployment"
+set :bundle_without, %w[development test].join(" ")
 set :repo_url, "git@github.com:jonastrindade/backend.git"
 set :branch, ENV.fetch("BRANCH", "main")
 set :deploy_to, "/var/www/backend"
