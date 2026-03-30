@@ -4,6 +4,8 @@ set :application, "backend"
 set :repo_url, "git@github.com:jonastrindade/backend.git"
 set :branch, ENV.fetch("BRANCH", "main")
 set :deploy_to, "/var/www/backend"
+set :assets_roles, [ :web ]
+set :assets_prefix, "assets"
 append :linked_files, "config/database.yml", "config/master.key"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "vendor", "storage"
 set :keep_releases, 5
