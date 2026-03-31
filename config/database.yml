@@ -21,7 +21,7 @@ production:
   primary: &primary_production
     <<: *default
     host: <%= ENV["BACKEND_DATABASE_HOST"] %>
-    database: <%= ENV["BACKEND_DATABASE"] %>
+    database: <%= ENV["BACKEND_DATABASE_NAME"] %>
     username: <%= ENV["BACKEND_DATABASE_USERNAME"] %>
     password: <%= ENV["BACKEND_DATABASE_PASSWORD"] %>
   cache:

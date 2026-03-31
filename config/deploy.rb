@@ -1,7 +1,7 @@
 lock "~> 3.20.0"
 
 set :application, "backend"
-set :bundle_flags, "--deployment"
+set :bundle_flags, ""
 set :bundle_without, %w[development test].join(" ")
 set :repo_url, "git@github.com:jonastrindade/backend.git"
 set :branch, ENV.fetch("BRANCH", "main")
@@ -27,3 +27,7 @@ namespace :puma do
   end
 end
 after "deploy:publishing", "puma:restart"
+set :rbenv_type, :user
+set :rbenv_ruby, "4.0.2"
+set :rbenv_path, "/home/deploy/.rbenv"
+append :linked_files, ".env"

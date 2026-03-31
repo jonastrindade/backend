@@ -18,14 +18,16 @@ gem "kamal", require: false
 gem "thruster", require: false
 gem "image_processing", "~> 1.2"
 
+gem "dotenv-rails"
+
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
-  gem "dotenv-rails"
   gem "bundler-audit", require: false
   gem "brakeman", require: false
   gem "rubocop-rails-omakase", require: false
   gem "capistrano", require: false
   gem "capistrano-rails", require: false
+  gem "capistrano-rbenv"
   gem "capistrano-bundler", require: false
   gem "capistrano3-puma", require: false # se for usar Puma
 end
